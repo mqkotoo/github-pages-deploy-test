@@ -6,20 +6,17 @@ concurrency:
 on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
-    paths-ignore:
-      - ".github/**"
 
   push:
     branches:
       - main
       - develop
-    paths-ignore:
-      - ".github/**"
 
 permissions:
   deployments: write
   id-token: write
   contents: write
+  pull-requests: write
 
 jobs:
   build:
