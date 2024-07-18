@@ -101,6 +101,7 @@ jobs:
           git add -N .
           if ! git diff --exit-code --quiet
           then
+            git add .
             git commit -m "Deploy ${{ needs.build.outputs.directory }} to GitHub Pages"
             git push origin gh-pages
           fi
