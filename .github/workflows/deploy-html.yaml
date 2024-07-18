@@ -1,4 +1,4 @@
-name: Deploy Widget Catalog to GitHub Pages
+name: Deploy html to GitHub Pages
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: false
@@ -97,6 +97,15 @@ jobs:
           git add .
           git commit -m "Deploy ${{ needs.build.outputs.directory }} to GitHub Pages"
           git push origin gh-pages
+
+      - name: Comment PullRequest
+        uses: JoseThen/comment-pr@v1.2.0
+        with:
+          comment: "Preview ${{ steps.deployment.outputs.page_url }}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
 
   deactivate-on-close:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
