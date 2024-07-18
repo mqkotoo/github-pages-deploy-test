@@ -1,4 +1,4 @@
-name: Deploy Widget Catalog to GitHub Pages
+name: Deploy html to GitHub Pages
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: false
