@@ -167,15 +167,3 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           env: PR-${{ github.event.number }}
           desc: "PR-${{ github.event.number }} environment has been deactivated."
-
-      - name: Update deployment status
-        ## https://github.com/bobheadxi/deployments/tree/v1/
-        uses: bobheadxi/deployments@648679e8e4915b27893bd7dbc35cb504dc915bc8
-        if: always()
-        with:
-          step: finish
-          token: ${{ secrets.GITHUB_TOKEN }}
-          status: ${{ job.status }}
-          env: PR-${{ github.event.number }}
-          deployment_id: ${{ needs.build.outputs.deployment_id }}
-          env_url: ${{ needs.build.outputs.base_url }}/index.html
