@@ -122,11 +122,9 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: JoseThen/comment-pr@v1.2.0
         with:
-          comment: "Preview ${{ steps.deployment.outputs.page_url }}"
+          # comment: "Preview https://example.com/${{ needs.build.outputs.directory }}/index.html"
+          comment: "Preview https://mqkotoo.github.io/github-pages-deploy-test/${{ needs.build.outputs.directory }}/index.html"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    environment:
-      name: github-pages
-      url: ${{steps.deployment.outputs.page_url}}
 
   deactivate-on-close:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
